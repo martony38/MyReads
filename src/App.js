@@ -30,6 +30,11 @@ class BooksApp extends React.Component {
       books.push(bookToUpdate);
       return { books };
     })
+
+    // Update book in backend server
+    BooksAPI.update(bookToUpdate, shelf).then(res => {
+      res[shelf].includes(bookToUpdate.id) ? alert(`Book has been moved to ${shelf}`) : alert(`error: failed to move book to ${shelf}`);
+    })
   }
 
   render() {
