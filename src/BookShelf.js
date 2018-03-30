@@ -8,13 +8,15 @@ const BookShelf = props => (
     <BookGrid
       className="bookshelf-books"
       books={props.books}
+      onChangeShelf={props.onChangeShelf}
     />
   </div>
  );
 
 BookShelf.propTypes = {
   title: PropTypes.string.isRequired,
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
 }
 
 export default BookShelf

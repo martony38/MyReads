@@ -22,6 +22,16 @@ class BooksApp extends React.Component {
     })
   }
 
+  changeShelf = (bookToUpdate, shelf) => {
+    // Move book to new shelf by changing state
+    this.setState(prevState => {
+      let books = prevState.books.filter(book => book !== bookToUpdate);
+      bookToUpdate.shelf = shelf;
+      books.push(bookToUpdate);
+      return { books };
+    })
+  }
+
   render() {
     return (
       <div className="app">
@@ -43,7 +53,10 @@ class BooksApp extends React.Component {
               </div>
             </div>
             <div className="search-books-results">
-              <BookGrid books={this.state.books} />
+              <BookGrid
+                books={this.state.books}
+                onChangeShelf={this.changeShelf}
+              />
             </div>
           </div>
         ) : (
@@ -56,14 +69,17 @@ class BooksApp extends React.Component {
                 <BookShelf
                   title="Currently Reading"
                   books={this.state.books.filter(book => book.shelf === "currentlyReading")}
+                  onChangeShelf={this.changeShelf}
                 />
                 <BookShelf
                   title="Want to Read"
                   books={this.state.books.filter(book => book.shelf === "wantToRead")}
+                  onChangeShelf={this.changeShelf}
                 />
                 <BookShelf
                   title="Read"
                   books={this.state.books.filter(book => book.shelf === "read")}
+                  onChangeShelf={this.changeShelf}
                 />
               </div>
             </div>

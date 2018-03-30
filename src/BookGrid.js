@@ -7,9 +7,8 @@ const BookGrid = props => (
     {props.books.map((book) => (
       <li key={book.id}>
         <Book
-          title={book.title}
-          authors={book.authors}
-          cover={book.imageLinks.thumbnail}
+          book={book}
+          onChangeShelf={props.onChangeShelf}
         />
       </li>
     ))}
@@ -17,7 +16,8 @@ const BookGrid = props => (
  );
 
 BookGrid.propTypes = {
-  books: PropTypes.array.isRequired
+  books: PropTypes.array.isRequired,
+  onChangeShelf: PropTypes.func.isRequired
 }
 
 export default BookGrid
