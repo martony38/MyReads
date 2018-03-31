@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const Book = props => (
   <div className="book">
     <div className="book-top">
-      <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${props.book.imageLinks.thumbnail})` }}></div>
+      <img className="book-cover" src={props.book.imageLinks.thumbnail} alt="book cover"/>
       <div className="book-shelf-changer">
         <select onChange={event => props.onChangeShelf(props.book, event.target.value)} value={props.book.shelf || "none"}>
           <option value="moveTo" disabled>Move to...</option>
