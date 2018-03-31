@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './BookShelf'
-import BookGrid from './BookGrid'
+import SearchBooks from './SearchBooks';
 
 class BooksApp extends React.Component {
   state = {
@@ -28,7 +28,16 @@ class BooksApp extends React.Component {
 
     // Update book in backend server
     BooksAPI.update(bookToUpdate, shelf).then(res => {
-      res[shelf].includes(bookToUpdate.id) ? alert(`Book has been moved to ${shelf}`) : alert(`error: failed to move book to ${shelf}`);
+      if (shelf === "none") {
+        for (const shelf in res) {
+          if (shelf.includes(bookToUpdate.id)) {
+            alert('error: failed to remove book');
+          }
+        }
+        alert('Book has been removed')
+      } else {
+        res[shelf].includes(bookToUpdate.id) ? alert(`Book has been moved to ${shelf}`) : alert(`error: failed to move book to ${shelf}`);
+      }
     })
   }
 
@@ -36,29 +45,10 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route exact path='/search' render={() => (
-          <div className="search-books">
-            <div className="search-books-bar">
-              <Link className='close-search' to='/'>Close</Link>
-              <div className="search-books-input-wrapper">
-                {/*
-                  NOTES: The search from BooksAPI is limited to a particular set of search terms.
-                  You can find these search terms here:
-                  https://github.com/udacity/reactnd-project-myreads-starter/blob/master/SEARCH_TERMS.md
-
-                  However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
-                  you don't find a specific author or title. Every search is limited by search terms.
-                */}
-                <input type="text" placeholder="Search by title or author"/>
-
-              </div>
-            </div>
-            <div className="search-books-results">
-              <BookGrid
-                books={this.state.books}
-                onChangeShelf={this.changeShelf}
-              />
-            </div>
-          </div>
+          <SearchBooks
+            onChangeShelf={this.changeShelf}
+            booksOnShelves={this.state.books}
+          />
         )}/>
         <Route exact path='/' render={() => (
           <div className="list-books">
