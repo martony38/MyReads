@@ -26,16 +26,16 @@ class SearchBooks extends Component {
 
     BooksAPI.search(query)
       .then(books => {
-      if (typeof books !== "undefined" && !books.error ) {
+        if (typeof books !== "undefined" && !books.error ) {
           const newBooks = books.filter(book => !this.props.booksOnShelves.map(book => book.id).includes(book.id))
           const booksAlreadyInLibrary = this.props.booksOnShelves.filter(book => books.map(book => book.id).includes(book.id))
           const bookResults = newBooks.concat(booksAlreadyInLibrary)
           this.setState({ books: bookResults });
           this.props.onAddNotice(`${bookResults.length} books found (${newBooks.length} new - ${booksAlreadyInLibrary.length} in library)`)
-      } else {
-        this.setState({ books: [] });
+        } else {
+          this.setState({ books: [] });
           this.props.onAddNotice('No books found.')
-      }
+        }
       })
       .catch(error => this.props.onAddNotice(`Error while searching books in database: ${error}`));
   }

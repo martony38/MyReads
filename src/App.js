@@ -38,16 +38,16 @@ class BooksApp extends React.Component {
     BooksAPI.update(bookToUpdate, shelf.value)
       .then(res => {
         if (shelf.value === "none") {
-        for (const shelf in res) {
-          if (shelf.includes(bookToUpdate.id)) {
+          for (const shelf in res) {
+            if (shelf.includes(bookToUpdate.id)) {
               this.addNotice('Error: Failed to remove book');
+            }
           }
-        }
           this.addNotice('Book has been removed');
-      } else {
+        } else {
           this.addNotice(res[shelf.value].includes(bookToUpdate.id) ? `Book has been moved to shelf "${shelf.title}"` : `Error: Failed to move book to shelf ${shelf.title}`);
-      }
-    })
+        }
+      })
       .catch(error => this.addNotice(`Error while updating book in database: ${error}`));
   }
 
