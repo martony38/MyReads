@@ -47,7 +47,7 @@ class BooksApp extends React.Component {
           this.addNotice(res[shelf.value].includes(bookToUpdate.id) ? `Book has been moved to shelf "${shelf.title}"` : `Error: Failed to move book to shelf ${shelf.title}`);
         }
       })
-      .catch(error => this.addNotice(`Error while updating book in database: ${error}`));
+      .catch(error => this.addNotice('Error while connecting to database. Check your internet connection and try again.'));
   }
 
   render() {
@@ -57,7 +57,6 @@ class BooksApp extends React.Component {
           <SearchBooks
             onChangeShelf={this.changeShelf}
             booksOnShelves={this.state.books}
-            notice={this.state.notice}
             onAddNotice={this.addNotice}
             onCloseNotice={this.removeNotice}
           />
@@ -65,15 +64,15 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <ShowLibrary
             booksOnShelves={this.state.books}
-                  onChangeShelf={this.changeShelf}
+            onChangeShelf={this.changeShelf}
             onCloseNotice={this.removeNotice}
-                />
+          />
         )}/>
-            <Notice
-              notice={this.state.notice}
-              onCloseNotice={this.removeNotice}
-            />
-          </div>
+        <Notice
+          notice={this.state.notice}
+          onCloseNotice={this.removeNotice}
+        />
+      </div>
     )
   }
 }

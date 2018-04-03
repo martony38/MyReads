@@ -1,43 +1,26 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import * as BooksAPI from './BooksAPI'
-import BookGrid from './BookGrid'
-import Notice from './Notice';
+import BookResults from './BookResults';
 
 class SearchBooks extends Component {
   static propTypes = {
     onChangeShelf: PropTypes.func.isRequired,
     booksOnShelves: PropTypes.array,
-    notice: PropTypes.string,
     onAddNotice: PropTypes.func.isRequired,
-    onCloseNotice: PropTypes.func.isRequired,
+    onCloseNotice: PropTypes.func.isRequired
   }
 
   state = {
-    query: '',
-    books: []
+    query: ''
   }
 
   updateQuery = query => {
     this.setState({ query: query });
+  }
 
-    this.props.onAddNotice('Searching books...')
-
-    BooksAPI.search(query)
-      .then(books => {
-        if (typeof books !== "undefined" && !books.error ) {
-          const newBooks = books.filter(book => !this.props.booksOnShelves.map(book => book.id).includes(book.id))
-          const booksAlreadyInLibrary = this.props.booksOnShelves.filter(book => books.map(book => book.id).includes(book.id))
-          const bookResults = newBooks.concat(booksAlreadyInLibrary)
-          this.setState({ books: bookResults });
-          this.props.onAddNotice(`${bookResults.length} books found (${newBooks.length} new - ${booksAlreadyInLibrary.length} in library)`)
-        } else {
-          this.setState({ books: [] });
-          this.props.onAddNotice('No books found.')
-        }
-      })
-      .catch(error => this.props.onAddNotice(`Error while searching books in database: ${error}`));
+  componentWillUnmount() {
+    this.props.onCloseNotice();
   }
 
   render() {
@@ -54,21 +37,18 @@ class SearchBooks extends Component {
             />
           </div>
         </div>
-        <div className="search-books-results">
-          {this.state.books && (
-          <BookGrid
-            books={this.state.books}
-            onChangeShelf={this.props.onChangeShelf}
-          />)}
-        </div>
-        <Notice
-          notice={this.props.notice}
+        {// Only mount component if search query not empty
+        this.state.query && (
+        <BookResults
+          onChangeShelf={this.props.onChangeShelf}
+          booksOnShelves={this.props.booksOnShelves}
+          onAddNotice={this.props.onAddNotice}
           onCloseNotice={this.props.onCloseNotice}
-        />
+          query={this.state.query}
+        />)}
       </div>
     )
   }
-
 }
 
 export default SearchBooks
