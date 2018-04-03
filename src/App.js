@@ -1,11 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
-import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
-import BookShelf from './BookShelf'
 import SearchBooks from './SearchBooks';
 import Notice from './Notice';
+import ShowLibrary from './ShowLibrary';
 
 class BooksApp extends React.Component {
   state = {
@@ -64,39 +63,17 @@ class BooksApp extends React.Component {
           />
         )}/>
         <Route exact path='/' render={() => (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
-            </div>
-            <div className="list-books-content">
-              <div>
-                <BookShelf
-                  title="Currently Reading"
-                  books={this.state.books.filter(book => book.shelf === "currentlyReading")}
+          <ShowLibrary
+            booksOnShelves={this.state.books}
                   onChangeShelf={this.changeShelf}
+            onCloseNotice={this.removeNotice}
                 />
-                <BookShelf
-                  title="Want to Read"
-                  books={this.state.books.filter(book => book.shelf === "wantToRead")}
-                  onChangeShelf={this.changeShelf}
-                />
-                <BookShelf
-                  title="Read"
-                  books={this.state.books.filter(book => book.shelf === "read")}
-                  onChangeShelf={this.changeShelf}
-                />
-              </div>
-            </div>
-            <div className="open-search">
-              <Link to='/search'>Add a book</Link>
-            </div>
+        )}/>
             <Notice
               notice={this.state.notice}
               onCloseNotice={this.removeNotice}
             />
           </div>
-        )}/>
-      </div>
     )
   }
 }
