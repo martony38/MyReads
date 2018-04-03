@@ -29,14 +29,15 @@ class BooksApp extends React.Component {
     // Move book to new shelf by changing state
     this.setState(prevState => {
       let books = prevState.books.filter(book => book !== bookToUpdate);
-      bookToUpdate.shelf = shelf;
+      bookToUpdate.shelf = shelf.value;
       books.push(bookToUpdate);
       return { books };
     })
 
     // Update book in backend server
-    BooksAPI.update(bookToUpdate, shelf).then(res => {
-      if (shelf === "none") {
+    BooksAPI.update(bookToUpdate, shelf.value)
+      .then(res => {
+        if (shelf.value === "none") {
         for (const shelf in res) {
           if (shelf.includes(bookToUpdate.id)) {
               this.addNotice('Error: Failed to remove book');
