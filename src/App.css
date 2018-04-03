@@ -173,3 +173,49 @@ body, .app {
   text-align: center;
   font-size: 0.8em;
 }
+
+.book-cover {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background: #eee;
+  max-height: 100%;
+}
+.book-cover-title {
+  padding: 20px 10px 0;
+  text-align: center;
+  font-size: 0.8em;
+}
+
+/* notice */
+
+.notice {
+  padding: 20px;
+  display: inline-flex;
+  align-items: center;
+  position: fixed;
+  right: 0px;
+  top: 60px;
+}
+
+.notice-text {
+  background-color: #2f7c32;
+  color: white;
+  padding: 2px 15px;
+  border-radius: 15px;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.close-notice-button {
+  display: block;
+  min-width: 30px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #2e7d32;
+  background-image: url('./icons/close.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  font-size: 0;
+  cursor: pointer;
+  margin-left: 10px
+}

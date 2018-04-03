@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as BooksAPI from './BooksAPI'
 import BookGrid from './BookGrid'
+import Notice from './Notice';
 
 class SearchBooks extends Component {
   static propTypes = {
     onChangeShelf: PropTypes.func.isRequired,
-    booksOnShelves: PropTypes.array
+    booksOnShelves: PropTypes.array,
+    notice: PropTypes.string,
+    onAddNotice: PropTypes.func.isRequired,
+    onCloseNotice: PropTypes.func.isRequired,
   }
 
   state = {
@@ -18,15 +22,22 @@ class SearchBooks extends Component {
   updateQuery = query => {
     this.setState({ query: query });
 
-    BooksAPI.search(query).then(books => {
+    this.props.onAddNotice('Searching books...')
+
+    BooksAPI.search(query)
+      .then(books => {
       if (typeof books !== "undefined" && !books.error ) {
-        const booksFoundNotonShelves = books.filter(book => !this.props.booksOnShelves.map(book => book.id).includes(book.id))
-        const booksFoundAlreadyonShelves = this.props.booksOnShelves.filter(book => books.map(book => book.id).includes(book.id))
-        this.setState({ books: booksFoundNotonShelves.concat(booksFoundAlreadyonShelves) });
+          const newBooks = books.filter(book => !this.props.booksOnShelves.map(book => book.id).includes(book.id))
+          const booksAlreadyInLibrary = this.props.booksOnShelves.filter(book => books.map(book => book.id).includes(book.id))
+          const bookResults = newBooks.concat(booksAlreadyInLibrary)
+          this.setState({ books: bookResults });
+          this.props.onAddNotice(`${bookResults.length} books found (${newBooks.length} new - ${booksAlreadyInLibrary.length} in library)`)
       } else {
         this.setState({ books: [] });
+          this.props.onAddNotice('No books found.')
       }
-    });
+      })
+      .catch(error => this.props.onAddNotice(`Error while searching books in database: ${error}`));
   }
 
   render() {
@@ -50,6 +61,10 @@ class SearchBooks extends Component {
             onChangeShelf={this.props.onChangeShelf}
           />)}
         </div>
+        <Notice
+          notice={this.props.notice}
+          onCloseNotice={this.props.onCloseNotice}
+        />
       </div>
     )
   }

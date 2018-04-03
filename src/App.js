@@ -5,16 +5,24 @@ import * as BooksAPI from './BooksAPI'
 import './App.css'
 import BookShelf from './BookShelf'
 import SearchBooks from './SearchBooks';
+import Notice from './Notice';
 
 class BooksApp extends React.Component {
   state = {
+    notice: "",
     books: []
   }
 
+  addNotice = message => this.setState({ notice: message })
+
+  removeNotice = () => {
+    this.setState({ notice: "" })
+  }
+
   componentDidMount() {
-    BooksAPI.getAll().then(books => {
-      this.setState({ books })
-    })
+    BooksAPI.getAll()
+      .then(books => this.setState({ books }))
+      .catch(error => this.addNotice(`Error while getting books from database: ${error}`));
   }
 
   changeShelf = (bookToUpdate, shelf) => {
@@ -31,14 +39,15 @@ class BooksApp extends React.Component {
       if (shelf === "none") {
         for (const shelf in res) {
           if (shelf.includes(bookToUpdate.id)) {
-            alert('error: failed to remove book');
+              this.addNotice('Error: Failed to remove book');
           }
         }
-        alert('Book has been removed')
+          this.addNotice('Book has been removed');
       } else {
-        res[shelf].includes(bookToUpdate.id) ? alert(`Book has been moved to ${shelf}`) : alert(`error: failed to move book to ${shelf}`);
+          this.addNotice(res[shelf.value].includes(bookToUpdate.id) ? `Book has been moved to shelf "${shelf.title}"` : `Error: Failed to move book to shelf ${shelf.title}`);
       }
     })
+      .catch(error => this.addNotice(`Error while updating book in database: ${error}`));
   }
 
   render() {
@@ -48,6 +57,9 @@ class BooksApp extends React.Component {
           <SearchBooks
             onChangeShelf={this.changeShelf}
             booksOnShelves={this.state.books}
+            notice={this.state.notice}
+            onAddNotice={this.addNotice}
+            onCloseNotice={this.removeNotice}
           />
         )}/>
         <Route exact path='/' render={() => (
@@ -77,6 +89,10 @@ class BooksApp extends React.Component {
             <div className="open-search">
               <Link to='/search'>Add a book</Link>
             </div>
+            <Notice
+              notice={this.state.notice}
+              onCloseNotice={this.removeNotice}
+            />
           </div>
         )}/>
       </div>
