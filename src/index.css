@@ -1,8 +1,12 @@
+/* vendor prefixes added for the last 4 versions of each browser using Autoprefixer (https://autoprefixer.github.io) */
+
 html {
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 *, *:before, *:after {
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 body {
   margin: 0;
