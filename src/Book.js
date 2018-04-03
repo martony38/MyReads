@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // Import relative path to image (https://stackoverflow.com/questions/37644265/correct-path-for-img-on-react-js)
-import bookCoverDefault from './icons/book-3057902_640.png'
+import bookCoverDefault from './img/default-book-cover.png'
 
 const Book = props => (
   <div className="book">
