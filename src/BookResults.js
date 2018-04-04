@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
-import * as BooksAPI from './BooksAPI'
-import BookGrid from './BookGrid'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import * as BooksAPI from './BooksAPI';
+import BookGrid from './BookGrid';
 
 // Use wrapper to cancel async calls to BooksAPI not yet returned when component unmount
 // (taken from https://reactjs.org/blog/2015/12/16/ismounted-antipattern.html)
@@ -30,11 +30,11 @@ class BookResults extends Component {
     onAddNotice: PropTypes.func.isRequired,
     onCloseNotice: PropTypes.func.isRequired,
     query: PropTypes.string
-  }
+  };
 
   state = {
     books: []
-  }
+  };
 
   getBooksResults() {
     this.props.onAddNotice('Searching books...');
@@ -92,8 +92,8 @@ class BookResults extends Component {
           onChangeShelf={this.props.onChangeShelf}
         />)}
       </div>
-    )
+    );
   }
 }
 
-export default BookResults
+export default BookResults;

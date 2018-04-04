@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import BookResults from './BookResults';
 
 class SearchBooks extends Component {
@@ -9,15 +9,15 @@ class SearchBooks extends Component {
     booksOnShelves: PropTypes.array,
     onAddNotice: PropTypes.func.isRequired,
     onCloseNotice: PropTypes.func.isRequired
-  }
+  };
 
   state = {
     query: ''
-  }
+  };
 
   updateQuery = query => {
     this.setState({ query: query });
-  }
+  };
 
   componentWillUnmount() {
     this.props.onCloseNotice();
@@ -47,8 +47,8 @@ class SearchBooks extends Component {
           query={this.state.query}
         />)}
       </div>
-    )
+    );
   }
 }
 
-export default SearchBooks
+export default SearchBooks;

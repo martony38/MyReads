@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import BookShelf from './BookShelf'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import BookShelf from './BookShelf';
 
 class ShowLibrary extends Component {
   static propTypes = {
     onChangeShelf: PropTypes.func.isRequired,
     booksOnShelves: PropTypes.array,
     onCloseNotice: PropTypes.func.isRequired
-  }
+  };
 
   componentWillUnmount() {
     this.props.onCloseNotice();
@@ -43,8 +43,8 @@ class ShowLibrary extends Component {
           <Link to='/search'>Add a book</Link>
         </div>
       </div>
-    )
+    );
   }
 }
 
-export default ShowLibrary
+export default ShowLibrary;

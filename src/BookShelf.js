@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import BookGrid from './BookGrid'
+import React from 'react';
+import PropTypes from 'prop-types';
+import BookGrid from './BookGrid';
 
 const BookShelf = props => (
   <div className="bookshelf">
@@ -19,6 +19,6 @@ BookShelf.propTypes = {
   title: PropTypes.string.isRequired,
   books: PropTypes.array.isRequired,
   onChangeShelf: PropTypes.func.isRequired
-}
+};
 
-export default BookShelf
+export default BookShelf;

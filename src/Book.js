@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
 // Import relative path to image (https://stackoverflow.com/questions/37644265/correct-path-for-img-on-react-js)
-import bookCoverDefault from './img/default-book-cover.png'
+import bookCoverDefault from './img/default-book-cover.png';
 
 const Book = props => (
   <div className="book">
@@ -31,11 +31,11 @@ const Book = props => (
       <div className="book-authors">{props.book.authors.join(' / ')}</div>
     )}
   </div>
-)
+);
 
 Book.propTypes = {
   book: PropTypes.object.isRequired,
   onChangeShelf: PropTypes.func.isRequired
-}
+};
 
-export default Book
+export default Book;

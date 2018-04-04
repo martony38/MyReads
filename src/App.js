@@ -1,7 +1,7 @@
-import React from 'react'
-import { Route } from 'react-router-dom'
-import * as BooksAPI from './BooksAPI'
-import './App.css'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import * as BooksAPI from './BooksAPI';
+import './App.css';
 import SearchBooks from './SearchBooks';
 import Notice from './Notice';
 import ShowLibrary from './ShowLibrary';
@@ -10,13 +10,13 @@ class BooksApp extends React.Component {
   state = {
     notice: "",
     books: []
-  }
+  };
 
-  addNotice = message => this.setState({ notice: message })
+  addNotice = message => this.setState({ notice: message });
 
   removeNotice = () => {
-    this.setState({ notice: "" })
-  }
+    this.setState({ notice: "" });
+  };
 
   componentDidMount() {
     BooksAPI.getAll()
@@ -48,7 +48,7 @@ class BooksApp extends React.Component {
         }
       })
       .catch(error => this.addNotice('Error while connecting to database. Check your internet connection and try again.'));
-  }
+  };
 
   render() {
     return (
@@ -73,8 +73,8 @@ class BooksApp extends React.Component {
           onCloseNotice={this.removeNotice}
         />
       </div>
-    )
+    );
   }
 }
 
-export default BooksApp
+export default BooksApp;
