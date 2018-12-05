@@ -1,12 +1,17 @@
 /* vendor prefixes added for the last 4 versions of each browser using Autoprefixer (https://autoprefixer.github.io) */
 
-html, body, .root {
+html,
+body,
+.root {
   height: 100%;
 }
+
 body {
   line-height: 1.5;
 }
-body, .app {
+
+body,
+.app {
   background: white;
 }
 
@@ -15,7 +20,7 @@ body, .app {
 .list-books-title {
   padding: 10px 0;
   text-align: center;
-  background-image: url('./img/book-pages-books-close-up-415078.jpg');
+  background-image: url("./img/book-pages-books-close-up-415078.jpg");
   background-position: center;
   background-size: 1440px;
 }
@@ -36,10 +41,10 @@ body, .app {
 }
 
 .list-books-content {
-  padding: 0 0 80px;
+  padding: 0;
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
 
 .bookshelf {
@@ -55,6 +60,7 @@ body, .app {
 .bookshelf-title {
   border-bottom: 1px solid #dedede;
 }
+
 .bookshelf-books {
   text-align: center;
 }
@@ -64,22 +70,28 @@ body, .app {
   right: 25px;
   bottom: 25px;
 }
+
 .open-search a {
   display: block;
   width: 50px;
   height: 50px;
   border-radius: 50%;
   background: #2e7d32;
-  background-image: url('./icons/add.svg');
+  background-image: url("./icons/add.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 28px;
-  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   font-size: 0;
 }
 
 /* search page */
+
+.search-books {
+  min-height: calc(100vh - 99.69px);
+}
 
 .search-books-bar {
   position: fixed;
@@ -90,21 +102,24 @@ body, .app {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
-          box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 0 6px rgba(0,0,0,0.23);
+  -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+    0 0 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 0 6px rgba(0, 0, 0, 0.23);
 }
+
 .search-books-input-wrapper {
   -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
+
 .search-books-bar input {
   width: 100%;
   padding: 15px 10px;
   font-size: 1.25em;
   border: none;
   outline: none;
-  font-family: cursive, 'Roboto', sans-serif;
+  font-family: cursive, "Roboto", sans-serif;
 }
 
 .close-search {
@@ -113,7 +128,7 @@ body, .app {
   left: 15px;
   width: 50px;
   background: white;
-  background-image: url('./icons/arrow-back.svg');
+  background-image: url("./icons/arrow-back.svg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: 28px;
@@ -137,11 +152,12 @@ body, .app {
 
   display: flex;
   -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
 }
+
 .books-grid li {
   padding: 10px 15px;
   text-align: left;
@@ -150,13 +166,16 @@ body, .app {
 .book {
   width: 140px;
 }
+
 .book-title,
 .book-authors {
   font-size: 0.8em;
 }
+
 .book-title {
   margin-top: 10px;
 }
+
 .book-authors {
   color: #999;
 }
@@ -168,8 +187,8 @@ body, .app {
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: end;
-      -ms-flex-align: end;
-          align-items: flex-end;
+  -ms-flex-align: end;
+  align-items: flex-end;
 }
 
 .book-shelf-changer {
@@ -180,13 +199,15 @@ body, .app {
   height: 40px;
   border-radius: 50%;
   background: #60ac5d;
-  background-image: url('./icons/arrow-drop-down.svg');
+  background-image: url("./icons/arrow-drop-down.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
-  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
+
 .book-shelf-changer select {
   width: 100%;
   height: 100%;
@@ -197,11 +218,13 @@ body, .app {
 /* book cover */
 
 .book-cover {
-  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background: #eee;
   max-height: 100%;
 }
+
 .book-cover-title {
   padding: 20px 10px 0;
   text-align: center;
@@ -216,8 +239,8 @@ body, .app {
   display: -ms-inline-flexbox;
   display: inline-flex;
   -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
   position: fixed;
   right: 0px;
   top: 60px;
@@ -228,8 +251,9 @@ body, .app {
   color: white;
   padding: 2px 15px;
   border-radius: 15px;
-  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 
 .close-notice-button {
@@ -239,12 +263,48 @@ body, .app {
   height: 30px;
   border-radius: 50%;
   background: #2e7d32;
-  background-image: url('./icons/close.svg');
+  background-image: url("./icons/close.svg");
   background-repeat: no-repeat;
   background-position: center;
-  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
-          box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
+    0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   font-size: 0;
   cursor: pointer;
-  margin-left: 10px
+  margin-left: 10px;
+}
+
+/* footer */
+
+footer {
+  padding: 25px 75px 25px 25px;
+}
+
+.styled-logo-1 {
+  width: 30px;
+  height: 100%;
+  bottom: -4px;
+  position: relative;
+}
+
+.styled-logo-2 {
+  width: 30px;
+  position: absolute;
+  left: 0px;
+  bottom: 2px;
+
+  animation-iteration-count: infinite;
+  animation-duration: 0.5s;
+  animation-name: flashing;
+  animation-direction: alternate;
+}
+
+@keyframes flashing {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
